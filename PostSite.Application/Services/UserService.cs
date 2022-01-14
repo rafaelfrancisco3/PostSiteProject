@@ -1,7 +1,7 @@
 ﻿using PostSite.Domain.Entities;
-using PostSite.Domain.Ports.Driven;
-using PostSite.Domain.Ports.Driven.Repositories;
-using PostSite.Domain.Ports.Driving.Services;
+using PostSite.Domain.Adapters;
+using PostSite.Domain.Adapters.Repositories;
+using PostSite.Domain.Services;
 using PostSite.Domain.Utils;
 
 namespace PostSite.Application.Services
@@ -17,9 +17,23 @@ namespace PostSite.Application.Services
             _hashAdapter = hashAdapter;
         }
 
-        public Task<Response<IUser>> Authentication(string email, string password)
+        public async Task<Response<IUser>> AuthenticationAsync(string email, string password)
         {
-            throw new NotImplementedException();
+            Response<IUser> response = new Response<IUser>();
+            Response<IUser> getResponse = await _userRepository.GetAsync(email);
+            if (getResponse.Type == ResponseType.Error)
+                return getResponse;
+            IUser user = getResponse.Data;
+            bool isCorrectPassword = _hashAdapter.verify(password, user.PasswordHash);
+            if(!isCorrectPassword)
+            {
+                response.Type = ResponseType.Error;
+                response.Message = "Password Incorrect";
+                return response;
+            }
+            user.PasswordHash = "";
+            response.Data = user;
+            return response;
         }
 
         public async Task<Response<IUser>> CreateAsync(IUser user, string password)
