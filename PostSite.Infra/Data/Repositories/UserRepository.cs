@@ -27,7 +27,14 @@ namespace PostSite.Infra.Data.Repositories
         public async Task<Response<IUser>> GetAsync(string email)
         {
             Response<IUser> response = new Response<IUser>();
-            response.Data = await _context.Users.FirstAsync(x => x.Email == email);
+            IUser? user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if(user == null)
+            {
+                response.Type = ResponseType.Error;
+                response.Message = "User don't exists";
+                return response;
+            }
+            response.Data = user;
             return response;
         }
     }
