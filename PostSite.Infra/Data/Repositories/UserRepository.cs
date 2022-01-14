@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PostSite.Domain.Entities;
-using PostSite.Domain.Ports.Driven.Repositories;
+using PostSite.Domain.Adapters.Repositories;
 using PostSite.Domain.Utils;
 using PostSite.Infra.Data.Models;
 

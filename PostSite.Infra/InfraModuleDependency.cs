@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PostSite.Infra.Data;
-using PostSite.Domain.Ports.Driven;
+using PostSite.Domain.Adapters;
 using PostSite.Infra.Adapters;
-using PostSite.Domain.Ports.Driven.Repositories;
+using PostSite.Domain.Adapters.Repositories;
 using PostSite.Infra.Data.Repositories;
 
 namespace PostSite.Infra

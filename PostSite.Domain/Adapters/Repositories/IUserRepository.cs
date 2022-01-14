@@ -1,7 +1,7 @@
 ﻿using PostSite.Domain.Entities;
 using PostSite.Domain.Utils;
 
-namespace PostSite.Domain.Ports.Driven.Repositories
+namespace PostSite.Domain.Adapters.Repositories
 {
     public interface IUserRepository
     {

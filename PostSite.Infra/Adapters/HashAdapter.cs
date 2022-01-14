@@ -1,4 +1,4 @@
-﻿using PostSite.Domain.Ports.Driven;
+﻿using PostSite.Domain.Adapters;
 
 namespace PostSite.Infra.Adapters
 {

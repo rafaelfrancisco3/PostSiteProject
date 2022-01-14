@@ -1,4 +1,4 @@
-﻿namespace PostSite.Domain.Ports.Driven
+﻿namespace PostSite.Domain.Adapters
 {
     public interface IHashAdapter
     {
